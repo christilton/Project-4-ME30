@@ -11,7 +11,7 @@ ADDRESS = (IP, PORT)
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind(ADDRESS)
 
-dcpins = [33,31] #33 is PWM
+dcpins = [7,11] #33 is PWM
 control_pins = [32,36,38,40]
 
 
@@ -27,10 +27,10 @@ while True:
     value = instructions[1]
     print("Type:", type, "Value:", value)
     if (type == "speed" and value == -1): #reverse
-        GPIO.output(31,GPIO.HIGH)
-        GPIO.output(33,GPIO.LOW)
+        GPIO.output(7,GPIO.HIGH)
+        GPIO.output(11,GPIO.LOW)
     elif (type == "speed" and value == 0):
-        GPIO.output(33,GPIO.LOW)
-        GPIO.output(31,GPIO.LOW)
+        GPIO.output(7,GPIO.LOW)
+        GPIO.output(11,GPIO.LOW)
     else:
         pass
