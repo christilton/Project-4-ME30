@@ -16,10 +16,10 @@ control_pins = [32,36,38,40]
 
 for pin in dcpins:
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin,0)
+    GPIO.output(pin,GPIO.LOW)
 for pin in control_pins:
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, 0)
+    GPIO.output(pin, GPIO>LOW)
 
 while True:
     data, address = s.recvfrom(4096)
@@ -34,5 +34,5 @@ while True:
     #elif (type == "speed" and value == 0):
     #    GPIO.output(33,0)
     #    GPIO.output(37,0)
-    GPIO.output(37,1)
-    GPIO.output(33,0)
+    GPIO.output(37,GPIO.HIGH)
+    GPIO.output(33,GPIO.LOW)
