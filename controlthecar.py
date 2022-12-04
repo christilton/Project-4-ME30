@@ -19,27 +19,61 @@ class MyController(Controller):
         pass
 
     def on_R2_Press(self,value):
-        speed = int((value+33000)/660)
+        val = int((value+33000)/660
+        identifier = 'speed'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_R2_release(self):
-        speed = 0
+        val = 0
+        identifier = 'speed'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_R1_press(self):
-        speed = -1
+        val = -1
+        identifier = 'speed'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_R1_release(self):
-        speed = 0
+        val = 0
+        identifier = 'speed'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_left_arrow_press(self):
-        direction = 'left'
+        val = 'left'
+        identifier = 'direction'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
+
+    def on_left_arrow_release(self):
+        val = 'none'
+        identifier = 'direction'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_right_arrow_press(self):
-        direction = 'right'
+        val = 'right'
+        identifier = 'direction'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
+
+    def on_right_arrow_release(self):
+        val = 'none'
+        identifier = 'direction'
+        instructions = identifier + "," + str(val)
+        print(instructions)
+        sock.sendto(bytes(instructions), 'utf-8', address)
 
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
-while True:
-    controller.listen(timeout=60)
-    instructions = str(speed) + "," + str(direction)
-    print(instructions)
-    sock.sendto(bytes(instructions), 'utf-8', address)
+controller.listen(timeout=60)
