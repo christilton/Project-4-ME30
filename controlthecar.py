@@ -18,7 +18,7 @@ class MyController(Controller):
     def on_L2_release(self):
         pass
 
-    def on_R2_Press(self,value):
+    def on_R2_press(self,value):
         val = int((self.value+33000)/660)
         identifier = 'speed'
         instructions = str(identifier + "," + str(val))
@@ -53,12 +53,6 @@ class MyController(Controller):
         print(instructions)
         sock.sendto(bytes(instructions), 'utf-8', address)
 
-    def on_left_arrow_release(self):
-        val = 'none'
-        identifier = 'direction'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
 
     def on_right_arrow_press(self):
         val = 'right'
@@ -67,7 +61,7 @@ class MyController(Controller):
         print(instructions)
         sock.sendto(bytes(instructions), 'utf-8', address)
 
-    def on_right_arrow_release(self):
+    def on_left_right_arrow_release(self):
         val = 'none'
         identifier = 'direction'
         instructions = identifier + "," + str(val)
