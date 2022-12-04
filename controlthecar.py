@@ -23,14 +23,14 @@ class MyController(Controller):
         identifier = 'speed'
         instructions = str(identifier + "," + str(val))
         print(instructions)
-        sock.sendto(b"press", 'utf-8', address)
+        sock.sendto(bytes(instructions,'utf-8'), address)
 
     def on_R2_release(self):
         val = 0
         identifier = 'speed'
         instructions = str(identifier + "," + str(val))
         print(instructions)
-        sock.sendto(b"release", 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), address)
 
     def on_R1_press(self):
         val = -1
