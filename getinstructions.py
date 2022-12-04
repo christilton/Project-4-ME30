@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
 
 IP = '0.0.0.0'  # Receive any incoming UDP packet on this port
 PORT = 5000  #Example port
@@ -29,3 +30,5 @@ while True:
     print("Type:", type, "Value:", value)
     if (type == "speed" and value == -1): #reverse
         GPIO.output(37,1)
+    elif (type == "speed" and value == 0):
+        GPIO.output(dcpins,[0,0])
