@@ -36,7 +36,7 @@ class MyController(Controller):
     def on_right_arrow_press(self):
         direction = 'right'
 
-controller = MyController(interface = '/dev/input/js0', connecting using ds4drv=False)
+controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
 while True:
     controller.listen(timeout=60)
