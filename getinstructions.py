@@ -31,5 +31,5 @@ while True:
         GPIO.output(31,GPIO.HIGH)
         GPIO.output(33,GPIO.LOW)
     elif (type == "speed" and value == 0):
-        GPIO.output(33,GPIO.HIGH)
-        GPIO.output(31,GPIO.HIGH)
+        GPIO.output(33,GPIO.LOW)
+        GPIO.output(31,GPIO.LOW)
