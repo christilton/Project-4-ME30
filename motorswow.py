@@ -7,9 +7,7 @@ for pin in control_pins:
   GPIO.output(pin, 0)
 
 pos = 0
-now = time.monotonic()
-waittime = .001
-later = now + waittime
+
 halfstep_seq = [
   [1,0,0,0],
   [1,1,0,0],
@@ -23,9 +21,8 @@ halfstep_seq = [
 for i in range(512):
   for halfstep in range(8):
     for pin in range(4):
-      if later > time.monotonic():
-          GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
-          later = time.monotonic() + waittime
+        GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
+        time.sleep(.001)
     pos += .5
     print(pos)
 GPIO.cleanup()
