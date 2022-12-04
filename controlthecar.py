@@ -18,7 +18,7 @@ class MyController(Controller):
     def on_L2_release(self):
         pass
 
-    def on_R2 Press(self,value):
+    def on_R2_Press(self,value):
         speed = int((value+33000)/660)
 
     def on_R2_release(self):
