@@ -18,10 +18,12 @@ halfstep_seq = [
   [0,0,0,1],
   [1,0,0,1]
 ]
+rev_halfstep_seq = halfstep_seq[::-1]
+
 for i in range(512):
   for halfstep in range(8):
     for pin in range(4):
-        GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
+        GPIO.output(control_pins[pin], rev_halfstep_seq[halfstep][pin])
         time.sleep(.0001)
     pos += .5
     print(pos)
