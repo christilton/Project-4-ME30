@@ -15,10 +15,9 @@ dcpins = [33,31] #33 is PWM
 control_pins = [32,36,38,40]
 
 
-GPIO.setup(33, GPIO.OUT)
-GPIO.setup(31,GPIO.OUT)
-GPIO.output(33, GPIO.LOW)
-GPIO.output(31,GPIO.LOW)
+GPIO.setup(33, GPIO.OUT, initial = 0)
+GPIO.setup(31,GPIO.OUT, initial = 0)
+
 
 while True:
     data, address = s.recvfrom(4096)
