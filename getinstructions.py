@@ -15,8 +15,8 @@ dcpins = [7,11] #33 is PWM
 control_pins = [32,36,38,40]
 
 
-GPIO.setup(33, GPIO.OUT, initial = 0)
-GPIO.setup(31,GPIO.OUT, initial = 0)
+GPIO.setup(7, GPIO.OUT, initial = 0)
+GPIO.setup(11,GPIO.OUT, initial = 0)
 
 
 while True:
