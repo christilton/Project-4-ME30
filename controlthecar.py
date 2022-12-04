@@ -23,56 +23,56 @@ class MyController(Controller):
         identifier = 'speed'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_R2_release(self):
         val = 0
         identifier = 'speed'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_R1_press(self):
         val = -1
         identifier = 'speed'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_R1_release(self):
         val = 0
         identifier = 'speed'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_left_arrow_press(self):
         val = 'left'
         identifier = 'direction'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_left_arrow_release(self):
         val = 'none'
         identifier = 'direction'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_right_arrow_press(self):
         val = 'right'
         identifier = 'direction'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
     def on_right_arrow_release(self):
         val = 'none'
         identifier = 'direction'
         instructions = identifier + "," + str(val)
         print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        sock.sendto(bytes(instructions, 'utf-8'), 'utf-8', address)
 
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
