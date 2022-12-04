@@ -7,6 +7,12 @@ address = ('10.245.148.78', 5000)
 speed = 0
 direction = 0
 
+def send_udp(identifier,val,address):
+    instructions = str(identifier + "," + str(val))
+    print(instructions)
+    sock.sendto(bytes(instructions, 'utf-8'), address)
+
+
 class MyController(Controller):
 
     def __init__(self, **kwargs):
@@ -20,53 +26,31 @@ class MyController(Controller):
 
     def on_R2_press(self,value):
         val = int((value+33000)/660)
-        identifier = 'speed'
-        instructions = str(identifier + "," + str(val))
-        print(instructions)
-        sock.sendto(bytes(instructions,'utf-8'), address)
+        send_udp('speed',val,address)
 
     def on_R2_release(self):
         val = 0
-        identifier = 'speed'
-        instructions = str(identifier + "," + str(val))
-        print(instructions)
-        sock.sendto(bytes(instructions, 'utf-8'), address)
+        send_udp('speed',val,address)
 
     def on_R1_press(self):
         val = -1
-        identifier = 'speed'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        send_udp('speed',val,address)
 
     def on_R1_release(self):
         val = 0
-        identifier = 'speed'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        send_udp('speed',val,address)
 
     def on_left_arrow_press(self):
         val = 'left'
-        identifier = 'direction'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
-
+        send_udp('direction',val,address)
 
     def on_right_arrow_press(self):
         val = 'right'
-        identifier = 'direction'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        send_udp('direction',val,address)
 
     def on_left_right_arrow_release(self):
         val = 'none'
-        identifier = 'direction'
-        instructions = identifier + "," + str(val)
-        print(instructions)
-        sock.sendto(bytes(instructions), 'utf-8', address)
+        send_udp('direction',val,address)
 
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
