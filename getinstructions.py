@@ -2,7 +2,7 @@ import socket
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 IP = '0.0.0.0'  # Receive any incoming UDP packet on this port
@@ -32,3 +32,5 @@ while True:
     elif (type == "speed" and value == 0):
         GPIO.output(33,GPIO.LOW)
         GPIO.output(31,GPIO.LOW)
+    else:
+        pass
