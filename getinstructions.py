@@ -2,7 +2,7 @@ import socket
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
 IP = '0.0.0.0'  # Receive any incoming UDP packet on this port
