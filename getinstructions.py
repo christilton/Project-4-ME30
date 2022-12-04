@@ -19,7 +19,7 @@ for pin in dcpins:
     GPIO.output(pin,GPIO.LOW)
 for pin in control_pins:
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO>LOW)
+    GPIO.output(pin, GPIO.LOW)
 
 while True:
     data, address = s.recvfrom(4096)
