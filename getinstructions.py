@@ -34,3 +34,4 @@ while True:
         GPIO.output(11,GPIO.LOW)
     else:
         pass
+    print(GPIO.input(7))
