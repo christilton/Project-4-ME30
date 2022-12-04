@@ -19,7 +19,7 @@ class MyController(Controller):
         pass
 
     def on_R2_press(self,value):
-        val = int((self.value+33000)/660)
+        val = int((value+33000)/660)
         identifier = 'speed'
         instructions = str(identifier + "," + str(val))
         print(instructions)
