@@ -9,6 +9,8 @@ s.bind(ADDRESS)
 
 while True:
     data, address = s.recvfrom(4096)
-    print("Received: ", data.decode('utf-8'), "\n")
-
-# You can also still send UDP packets from the socket, even if it's bound already.
+    instructions = data.decode('utf-8')
+    instructions = instructions.split(",")
+    type = instructions[0]
+    value = instructions[1]
+    print("Type:", type, "Value:", value)
