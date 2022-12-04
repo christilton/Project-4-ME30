@@ -30,5 +30,6 @@ while True:
     print("Type:", type, "Value:", value)
     if (type == "speed" and value == -1): #reverse
         GPIO.output(37,1)
+        GPIO.output(33,0)
     elif (type == "speed" and value == 0):
         GPIO.output(dcpins,[0,0])
