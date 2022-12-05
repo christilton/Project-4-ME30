@@ -13,7 +13,7 @@ s.bind(ADDRESS)
 
 
 control_pins = [32,36,38,40]
-control_pins_b = control_pins[::1]
+control_pins_b = control_pins[::-1]
 
 for pin in control_pins:
   GPIO.setup(pin, GPIO.OUT)
