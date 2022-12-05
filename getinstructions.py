@@ -15,8 +15,8 @@ dcpins = [7,11] #33 is PWM
 control_pins = [32,36,38,40]
 
 
-GPIO.setup(7, GPIO.OUT, initial = 0)
-GPIO.setup(11,GPIO.OUT, initial = 0)
+GPIO.setup(13, GPIO.OUT, initial = 0)
+GPIO.setup(15,GPIO.OUT, initial = 0)
 
 
 while True:
@@ -27,14 +27,14 @@ while True:
     value = instructions[1]
     print("Type:", type, "Value:", value)
     if (type == "speed" and value == -1): #reverse
-        GPIO.output(7,GPIO.HIGH)
-        GPIO.output(11,GPIO.LOW)
+        GPIO.output(13,GPIO.HIGH)
+        GPIO.output(15,GPIO.LOW)
     elif (type == "speed" and value == 0): #stop
-        GPIO.output(7,GPIO.LOW)
-        GPIO.output(11,GPIO.LOW)
+        GPIO.output(13,GPIO.LOW)
+        GPIO.output(15,GPIO.LOW)
     elif (type == 'speed' and value > 0): #forward
-        GPIO.output(11, GPIO.HIGH)
-        GPIO.output(7, GPIO.LOW)
+        GPIO.output(15, GPIO.HIGH)
+        GPIO.output(13, GPIO.LOW)
     elif (type == "direction" and value == "left"):
         pass
     elif (type == "direction" and value == "right"):
