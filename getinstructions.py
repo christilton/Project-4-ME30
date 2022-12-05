@@ -67,13 +67,13 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
     if (STATE == RIGHTTURN):
         for halfstep in range(8):
           for pin in range(4):
-              GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
+              GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
               time.sleep(.0005)
         #steps += 1
     if (STATE == LEFTTURN):
         for halfstep in range(8):
           for pin in range(4):
-              GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
+              GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
               time.sleep(.0005)
         #steps -= 1
     if(STATE == STOPPED):
