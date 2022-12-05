@@ -21,7 +21,7 @@ for pin in control_pins:
   GPIO.output(pin, 0)
 GPIO.setup(33, GPIO.OUT, initial = 0) #PWM
 GPIO.setup(15,GPIO.OUT, initial = 0)
-p = GPIO.PWM(33,500)
+p = GPIO.PWM(33,5000)
 p.start(0)
 
 STOPPED = 1
