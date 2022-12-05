@@ -83,3 +83,4 @@ try:
         else:
             pass
 except BlockingIOError:
+    pass
