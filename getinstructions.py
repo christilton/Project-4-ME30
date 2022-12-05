@@ -41,7 +41,7 @@ halfstep_seq = [
 
 
 while True:
-    data, address = s.recvfrom(4096)
+    data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
     instructions = data.decode('utf-8')
     instructions = instructions.split(",")
     type = instructions[0]
