@@ -103,15 +103,13 @@ while True:
             STATE = RIGHTTURN
         elif (type == "direction" and value == "none"):
             STATE = STOPPED
-        elif (steps == 0 or steps == 180):
-            STATE = STOPPED
-        if (STATE == RIGHTTURN and steps < 180):
+        if (STATE == RIGHTTURN):
             for halfstep in range(8):
               for pin in range(4):
                   GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
                   time.sleep(.0001)
             steps += 1
-        elif (STATE == LEFTTURN and steps > 0):
+        elif (STATE == LEFTTURN):
             for halfstep in range(8):
               for pin in range(4):
                   GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
