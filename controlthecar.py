@@ -25,7 +25,7 @@ class MyController(Controller):
         pass
 
     def on_R2_press(self,value):
-        val = int((value+33000)/66000)
+        val = int((value+33000)/660)/100
         send_udp('speed',val,address)
 
     def on_R2_release(self):
