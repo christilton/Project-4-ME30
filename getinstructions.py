@@ -53,19 +53,10 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
         GPIO.output(15,GPIO.LOW)
         p.ChangeDutyCycle(0)
     if (type == 'speed' and float(value) > 0): #forward
-        speedmod = float(value)
+        GPIO.output(15, GPIO.LOW)
         dc = 100*speedmod
+        speedmod = float(value)
         p.ChangeDutyCycle(dc)
-        if STATE == RIGHTTURN:
-            for halfstep in range(8):
-              for pin in range(4):
-                  GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
-                  time.sleep(.0001)
-        if STATE == LEFTTURN:
-            for halfstep in range(8):
-              for pin in range(4):
-                  GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
-                  time.sleep(.0001)
     if (type == "direction" and value == "left"):
         STATE = LEFTTURN
     if (type == "direction" and value == "right"):
