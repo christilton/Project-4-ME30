@@ -26,13 +26,13 @@ while True:
     type = instructions[0]
     value = instructions[1]
     print("Type:", type, "Value:", value)
-    if (type == "speed" and value == -1): #reverse
+    if (type == "speed" and int(value) == -1): #reverse
         GPIO.output(13,GPIO.HIGH)
         GPIO.output(15,GPIO.LOW)
-    elif (type == "speed" and value == 0): #stop
+    elif (type == "speed" and int(value) == 0): #stop
         GPIO.output(13,GPIO.LOW)
         GPIO.output(15,GPIO.LOW)
-    elif (type == 'speed' and value > 0): #forward
+    elif (type == 'speed' and int(value) > 0): #forward
         GPIO.output(15, GPIO.HIGH)
         GPIO.output(13, GPIO.LOW)
     elif (type == "direction" and value == "left"):
