@@ -19,8 +19,10 @@ control_pins_b = control_pins[::-1]
 for pin in control_pins:
   GPIO.setup(pin, GPIO.OUT)
   GPIO.output(pin, 0)
-GPIO.setup(13, GPIO.OUT, initial = 0)
+GPIO.setup(33, GPIO.OUT, initial = 0) #PWM
 GPIO.setup(15,GPIO.OUT, initial = 0)
+p = GPIO.PWM(33,500)
+p.start(0)
 
 STOPPED = 1
 LEFTTURN = 2
@@ -46,13 +48,14 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
     print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
         GPIO.output(13,GPIO.HIGH)
-        GPIO.output(15,GPIO.LOW)
+        p.ChangeDutyCycle(0)
     if (type == "speed" and float(value) == 0): #stop
         GPIO.output(13,GPIO.LOW)
-        GPIO.output(15,GPIO.LOW)
+        p.ChangeDutyCycle(0)
     if (type == 'speed' and float(value) > 0): #forward
-        GPIO.output(15, GPIO.HIGH)
-        GPIO.output(13, GPIO.LOW)
+        speedmod = value
+        dc = 100*speedmod
+        p.ChangeDutyCycle(dc)
     if (type == "direction" and value == "left"):
         STATE = LEFTTURN
     if (type == "direction" and value == "right"):
@@ -85,3 +88,7 @@ while True:
 
     except BlockingIOError:
         handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
+
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        p.stop()
