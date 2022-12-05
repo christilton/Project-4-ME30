@@ -10,7 +10,7 @@ PORT = 5000  #Example port
 ADDRESS = (IP, PORT)
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind(ADDRESS)
-s.settimeout(0)
+s.settimeout(0.0)
 
 control_pins = [32,36,38,40]
 control_pins_b = control_pins[::-1]
