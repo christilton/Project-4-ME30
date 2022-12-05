@@ -91,17 +91,17 @@ while True:
         if (type == "speed" and float(value) == -1): #reverse
             GPIO.output(13,GPIO.HIGH)
             GPIO.output(15,GPIO.LOW)
-        elif (type == "speed" and float(value) == 0): #stop
+        if (type == "speed" and float(value) == 0): #stop
             GPIO.output(13,GPIO.LOW)
             GPIO.output(15,GPIO.LOW)
-        elif (type == 'speed' and float(value) > 0): #forward
+        if (type == 'speed' and float(value) > 0): #forward
             GPIO.output(15, GPIO.HIGH)
             GPIO.output(13, GPIO.LOW)
-        elif (type == "direction" and value == "left"):
+        if (type == "direction" and value == "left"):
             STATE = LEFTTURN
-        elif (type == "direction" and value == "right"):
+        if (type == "direction" and value == "right"):
             STATE = RIGHTTURN
-        elif (type == "direction" and value == "none"):
+        if (type == "direction" and value == "none"):
             STATE = STOPPED
         if (STATE == RIGHTTURN):
             for halfstep in range(8):
@@ -109,13 +109,13 @@ while True:
                   GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
                   time.sleep(.0001)
             steps += 1
-        elif (STATE == LEFTTURN):
+        if (STATE == LEFTTURN):
             for halfstep in range(8):
               for pin in range(4):
                   GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
                   time.sleep(.0001)
             steps -= 1
-        elif(STATE == STOPPED):
+        if(STATE == STOPPED):
             pass
         else:
             pass
