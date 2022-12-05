@@ -6,6 +6,11 @@ for pin in control_pins:
   GPIO.setup(pin, GPIO.OUT)
   GPIO.output(pin, 0)
 
+GPIO.setup(7, GPIO.OUT)
+GPIO.output(7,0)
+GPIO.setup(11, GPIO.OUT)
+GPIO.output(11,1)
+
 pos = 0
 
 halfstep_seq = [
