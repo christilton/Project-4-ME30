@@ -47,10 +47,10 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
     value = instructions[1]
     print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
-        GPIO.output(13,GPIO.HIGH)
+        GPIO.output(15,GPIO.HIGH)
         p.ChangeDutyCycle(0)
     if (type == "speed" and float(value) == 0): #stop
-        GPIO.output(13,GPIO.LOW)
+        GPIO.output(15,GPIO.LOW)
         p.ChangeDutyCycle(0)
     if (type == 'speed' and float(value) > 0): #forward
         speedmod = float(value)
