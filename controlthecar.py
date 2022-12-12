@@ -3,7 +3,7 @@ import socket
 #import RPi.GPIO as o
 
 sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-address = ('10.245.150.29', 5000)
+address = ('10.245.146.202', 5000)
 speed = 0
 direction = 0
 
