@@ -78,8 +78,6 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq)
         #steps -= 1
     if(STATE == STOPPED):
         pass
-    else:
-        pass
 
 while True:
     try:
