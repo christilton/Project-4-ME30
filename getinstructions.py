@@ -34,6 +34,9 @@ steps = 0
 STATE = STOPPED
 OPTION = 1
 
+rev = p
+fwd = p2
+
 halfstep_seq = [
   [1,0,0,0],
   [1,1,0,0],
@@ -45,7 +48,7 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, PRINT):
+def handle_movement(instructions,STATE,OPTION,, rev, fwd, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
     if (OPTION == 1 and type == 'option'):
@@ -105,10 +108,10 @@ while True:
         data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
         instructions = data.decode('utf-8')
         instructions = instructions.split(",")
-        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, True)
+        handle_movement(instructions,STATE,OPTION,rev,fwd,control_pins,control_pins_b,halfstep_seq, steps, True)
 
     except BlockingIOError:
-        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, False)
+        handle_movement(instructions,STATE,OPTION,rev,fwd,control_pins,control_pins_b,halfstep_seq, steps, False)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
