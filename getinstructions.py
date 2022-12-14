@@ -32,6 +32,7 @@ RIGHTTURN = 3
 steps = 0
 
 STATE = STOPPED
+OPTION = 1
 
 halfstep_seq = [
   [1,0,0,0],
@@ -47,19 +48,27 @@ halfstep_seq = [
 def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
+    if (OPTION == 1 and type == 'option'):
+        OPTION = 2
+        rev = p2
+        fwd = p
+    if (OPTION == 2 and type == 'option'):
+        OPTION = 1
+        rev = p
+        fwd = p2
     if (PRINT == True):
         print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
-        p2.ChangeDutyCycle(50)
-        p.ChangeDutyCycle(0)
+        rev.ChangeDutyCycle(50)
+        fwd.ChangeDutyCycle(0)
     if (type == "speed" and float(value) == 0): #stop
-        p2.ChangeDutyCycle(0)
-        p.ChangeDutyCycle(0)
+        rev.ChangeDutyCycle(0)
+        fwd.ChangeDutyCycle(0)
     if (type == 'speed' and float(value) > 0): #forward
-        p2.ChangeDutyCycle(0)
+        rev.ChangeDutyCycle(0)
         speedmod = float(value)
         dc = 80*speedmod + 20
-        p.ChangeDutyCycle(dc)
+        fwd.ChangeDutyCycle(dc)
         if (STATE == RIGHTTURN):
             for halfstep in range(8):
               for pin in range(4):
@@ -102,3 +111,4 @@ while True:
     except KeyboardInterrupt:
         GPIO.cleanup()
         p.stop()
+        p2.stop()

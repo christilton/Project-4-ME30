@@ -52,6 +52,10 @@ class MyController(Controller):
         val = 'none'
         send_udp('direction',val,address)
 
+    def on_options_press:
+        val = 'option'
+        send_udp('option',val, address)
+
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
 controller.listen(timeout=60)
