@@ -52,7 +52,7 @@ class MyController(Controller):
         val = 'none'
         send_udp('direction',val,address)
 
-    def on_options_press:
+    def on_options_press(self):
         val = 'option'
         send_udp('option',val, address)
 
