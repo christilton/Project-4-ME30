@@ -32,9 +32,6 @@ RIGHTTURN = 3
 STATE = STOPPED
 steps = 0
 
-OPTION1 = 1
-OPTION2 = 2
-OPTION = OPTION1
 
 halfstep_seq = [
   [1,0,0,0],
@@ -47,31 +44,21 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions, STATE, OPTION, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
+def handle_movement(instructions, STATE, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
+    rev = p2
+    fwd = p
     if (PRINT == True):
         print("Type:", type, "Value:", value)
-    if (OPTION != OPTION1 and type == 'option' and value == '1'):
-        OPTION = OPTION1
-        rev = p
-        fwd = p2
-        print("Switched to 2!")
-    elif (OPTION != OPTION2 and type == 'option' and value == '2'):
-        OPTION = OPTION2
-        rev = p2
-        fwd = p
-    else:
-        rev = 0
-        fwd = 0
         print("Switched to 1!")
-    if (type == "speed" and float(value) == -1 and rev != 0): #reverse
+    if (type == "speed" and float(value) == -1): #reverse
         rev.ChangeDutyCycle(50)
         fwd.ChangeDutyCycle(0)
-    if (type == "speed" and float(value) == 0 and rev != 0): #stop
+    if (type == "speed" and float(value) == 0): #stop
         rev.ChangeDutyCycle(0)
         fwd.ChangeDutyCycle(0)
-    if (type == 'speed' and float(value) > 0 and rev != 0): #forward
+    if (type == 'speed' and float(value) > 0): #forward
         rev.ChangeDutyCycle(0)
         speedmod = float(value)
         dc = 80*speedmod + 20
@@ -110,10 +97,10 @@ while True:
         data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
         instructions = data.decode('utf-8')
         instructions = instructions.split(",")
-        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, True)
+        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, True)
 
     except BlockingIOError:
-        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, False)
+        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, False)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
