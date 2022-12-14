@@ -53,10 +53,10 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,
         p2.ChangeDutyCycle(50)
         p.ChangeDutyCycle(0)
     if (type == "speed" and float(value) == 0): #stop
-        GPIO.output(15,GPIO.LOW)
+        p2.ChangeDutyCycle(0)
         p.ChangeDutyCycle(0)
     if (type == 'speed' and float(value) > 0): #forward
-        GPIO.output(15, GPIO.LOW)
+        p2.ChangeDutyCycle(0)
         speedmod = float(value)
         dc = 80*speedmod + 20
         p.ChangeDutyCycle(dc)
