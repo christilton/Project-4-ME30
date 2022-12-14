@@ -55,12 +55,12 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
         OPTION = 2
         rev = p2
         fwd = p
-        print("Switched!")
+        print("Switched to 2!")
     elif (OPTION == 2 and type == 'option' and value == 'press'):
         OPTION = 1
         rev = p
         fwd = p2
-        print("Switched!")
+        print("Switched to 1!")
     if (PRINT == True):
         print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
