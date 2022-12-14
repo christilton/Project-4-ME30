@@ -13,7 +13,7 @@ s.bind(ADDRESS)
 s.settimeout(0.0)
 instructions = [0,0]
 
-control_pins = [28,36,38,40]
+control_pins = [26,36,38,40]
 control_pins_b = control_pins[::-1]
 
 for pin in control_pins:
