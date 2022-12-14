@@ -42,10 +42,11 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps):
+def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
-    print("Type:", type, "Value:", value)
+    if (PRINT == True):
+        print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
         GPIO.output(15,GPIO.HIGH)
         p.ChangeDutyCycle(0)
@@ -86,10 +87,10 @@ while True:
         data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
         instructions = data.decode('utf-8')
         instructions = instructions.split(",")
-        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,steps)
+        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,steps, True)
 
     except BlockingIOError:
-        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,steps)
+        handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,steps, False)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
