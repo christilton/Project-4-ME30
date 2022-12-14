@@ -48,7 +48,7 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions,STATE,OPTION,, rev, fwd, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
+def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
     if (OPTION == 1 and type == 'option'):
