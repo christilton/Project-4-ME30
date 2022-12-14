@@ -27,7 +27,7 @@ p.start(0)
 STOPPED = 1
 LEFTTURN = 2
 RIGHTTURN = 3
-steps = 90
+steps = 0
 
 STATE = STOPPED
 
@@ -42,7 +42,7 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq):
+def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps):
     type = instructions[0]
     value = instructions[1]
     print("Type:", type, "Value:", value)
