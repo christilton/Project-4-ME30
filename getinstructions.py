@@ -51,7 +51,6 @@ def handle_movement(instructions, STATE, control_pins,control_pins_b,halfstep_se
     fwd = p
     if (PRINT == True):
         print("Type:", type, "Value:", value)
-        print("Switched to 1!")
     if (type == "speed" and float(value) == -1): #reverse
         rev.ChangeDutyCycle(50)
         fwd.ChangeDutyCycle(0)
