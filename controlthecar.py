@@ -51,13 +51,12 @@ class MyController(Controller):
     def on_left_right_arrow_release(self):
         val = 'none'
         send_udp('direction',val,address)
-    def on_options_press(self):
-        val = 'press'
-        send_udp('option',val, address)
-    def on_options_release(self):
-        val = 'release'
-        send_udp('option',val, address)
-
+    def on_x_press(self):
+        val = '1'
+        send_udp('option', val, address)
+    def on_circle_press(self):
+        val = '2'
+        send_udp('option', val, address)
 
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
