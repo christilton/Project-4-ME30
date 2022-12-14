@@ -51,10 +51,11 @@ halfstep_seq = [
 def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
+    if (PRINT == True):
+        print("Type:", type, "Value:", value)
     if (OPTION == 2 and type == 'option' and value == '1'):
         OPTION = 1
         print("Switched to 2!")
-        print(OPTION)
     elif (OPTION == 1 and type == 'option' and value == '2'):
         OPTION = 2
         print("Switched to 1!")
@@ -64,8 +65,6 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
     elif (OPTION == 2):
         rev = p2
         fwd = p
-    if (PRINT == True):
-        print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
         rev.ChangeDutyCycle(50)
         fwd.ChangeDutyCycle(0)
