@@ -52,10 +52,12 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,
         OPTION = 2
         rev = p2
         fwd = p
+        print("Switched!")
     if (OPTION == 2 and type == 'option'):
         OPTION = 1
         rev = p
         fwd = p2
+        print("Switched!")
     if (PRINT == True):
         print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
