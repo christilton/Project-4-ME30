@@ -57,7 +57,6 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,
         GPIO.output(15, GPIO.LOW)
         speedmod = float(value)
         dc = 80*speedmod + 20
-        print(dc)
         p.ChangeDutyCycle(dc)
     if (type == "direction" and value == "left"):
         STATE = LEFTTURN
