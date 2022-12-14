@@ -65,13 +65,13 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
         rev = p2
         fwd = p
         print("Switched to 1!")
-    if (type == "speed" and float(value) == -1): #reverse
+    if (type == "speed" and float(value) == -1 and rev != 0): #reverse
         rev.ChangeDutyCycle(50)
         fwd.ChangeDutyCycle(0)
-    if (type == "speed" and float(value) == 0): #stop
+    if (type == "speed" and float(value) == 0 and rev != 0): #stop
         rev.ChangeDutyCycle(0)
         fwd.ChangeDutyCycle(0)
-    if (type == 'speed' and float(value) > 0): #forward
+    if (type == 'speed' and float(value) > 0 and rev != ): #forward
         rev.ChangeDutyCycle(0)
         speedmod = float(value)
         dc = 80*speedmod + 20
