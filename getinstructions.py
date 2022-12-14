@@ -13,16 +13,18 @@ s.bind(ADDRESS)
 s.settimeout(0.0)
 instructions = [0,0]
 
-control_pins = [32,36,38,40]
+control_pins = [28,36,38,40]
 control_pins_b = control_pins[::-1]
 
 for pin in control_pins:
   GPIO.setup(pin, GPIO.OUT)
   GPIO.output(pin, 0)
 GPIO.setup(33, GPIO.OUT, initial = 0) #PWM
-GPIO.setup(15,GPIO.OUT, initial = 0)
+GPIO.setup(32,GPIO.OUT, initial = 0)
 p = GPIO.PWM(33,500)
+p2 = GPIO.PWM(32,500)
 p.start(0)
+p2.start(0)
 
 STOPPED = 1
 LEFTTURN = 2
@@ -48,7 +50,7 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,
     if (PRINT == True):
         print("Type:", type, "Value:", value)
     if (type == "speed" and float(value) == -1): #reverse
-        GPIO.output(15,GPIO.HIGH)
+        p2.ChangeDutyCycle(50)
         p.ChangeDutyCycle(0)
     if (type == "speed" and float(value) == 0): #stop
         GPIO.output(15,GPIO.LOW)
