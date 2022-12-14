@@ -53,8 +53,12 @@ class MyController(Controller):
         send_udp('direction',val,address)
 
     def on_options_press(self):
-        val = 'option'
+        val = 'press'
         send_udp('option',val, address)
+    def on_options_release(self):
+        val = 'release'
+        send_udp('option',val, address)
+
 
 controller = MyController(interface = '/dev/input/js0', connecting_using_ds4drv=False)
 
