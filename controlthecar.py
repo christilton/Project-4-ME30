@@ -51,7 +51,6 @@ class MyController(Controller):
     def on_left_right_arrow_release(self):
         val = 'none'
         send_udp('direction',val,address)
-
     def on_options_press(self):
         val = 'press'
         send_udp('option',val, address)
