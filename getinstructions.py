@@ -110,10 +110,10 @@ while True:
         data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
         instructions = data.decode('utf-8')
         instructions = instructions.split(",")
-        handle_movement(instructions,STATE,OPTION,rev,fwd,control_pins,control_pins_b,halfstep_seq, steps, True)
+        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, True)
 
     except BlockingIOError:
-        handle_movement(instructions,STATE,OPTION,rev,fwd,control_pins,control_pins_b,halfstep_seq, steps, False)
+        handle_movement(instructions,STATE,OPTION,control_pins,control_pins_b,halfstep_seq, steps, False)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
