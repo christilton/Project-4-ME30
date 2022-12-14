@@ -32,12 +32,9 @@ RIGHTTURN = 3
 STATE = STOPPED
 steps = 0
 
-OPTION = 0
 OPTION1 = 1
 OPTION2 = 2
-
-rev = 0
-fwd = 0
+OPTION = OPTION1
 
 halfstep_seq = [
   [1,0,0,0],
@@ -50,7 +47,7 @@ halfstep_seq = [
   [1,0,0,1]
 ]
 
-def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
+def handle_movement(instructions, STATE, OPTION, control_pins,control_pins_b,halfstep_seq, steps, PRINT):
     type = instructions[0]
     value = instructions[1]
     if (PRINT == True):
@@ -64,6 +61,9 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
         OPTION = OPTION2
         rev = p2
         fwd = p
+    else:
+        rev = 0
+        fwd = 0
         print("Switched to 1!")
     if (type == "speed" and float(value) == -1 and rev != 0): #reverse
         rev.ChangeDutyCycle(50)
