@@ -56,6 +56,7 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
         print("Switched to 2!")
         print(OPTION)
     elif (OPTION == 2 and type == 'option' and value == 'press'):
+        OPTION = 1
         print("Switched to 1!")
     if (OPTION == 1):
         rev = p
