@@ -71,7 +71,7 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
     if (type == "speed" and float(value) == 0 and rev != 0): #stop
         rev.ChangeDutyCycle(0)
         fwd.ChangeDutyCycle(0)
-    if (type == 'speed' and float(value) > 0 and rev != ): #forward
+    if (type == 'speed' and float(value) > 0 and rev != 0): #forward
         rev.ChangeDutyCycle(0)
         speedmod = float(value)
         dc = 80*speedmod + 20
