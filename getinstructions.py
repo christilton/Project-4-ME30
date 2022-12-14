@@ -70,32 +70,26 @@ def handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq,
           for pin in range(4):
               GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
               time.sleep(.0007)
+        steps += 1
+        return steps
     if (STATE == LEFTTURN):
         for halfstep in range(8):
           for pin in range(4):
               GPIO.output(control_pins_b[pin], halfstep_seq[halfstep][pin])
               time.sleep(.0007)
+        steps -= 1
+        return steps
     if(STATE == STOPPED):
         pass
-
-def count_steps(STATE, steps):
-    if (STATE == RIGHTTURN):
-        steps += 1
-    if (STATE == LEFTTURN):
-        steps -= 1
-    print("Steps:", steps)
-    return steps
 
 while True:
     try:
         data, address = s.recvfrom(4096, socket.MSG_DONTWAIT)
         instructions = data.decode('utf-8')
         instructions = instructions.split(",")
-        steps = count_steps(STATE,steps)
         handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, True)
 
     except BlockingIOError:
-        steps = count_steps(STATE,steps)
         handle_movement(instructions,STATE,control_pins,control_pins_b,halfstep_seq, steps, False)
 
     except KeyboardInterrupt:
