@@ -29,10 +29,11 @@ p2.start(0)
 STOPPED = 1
 LEFTTURN = 2
 RIGHTTURN = 3
+
 steps = 0
 
-STATE = STOPPED
-OPTION = 1
+OPTION1 = 1
+OPTION2 = 2
 
 rev = p2
 fwd = p
@@ -53,16 +54,16 @@ def handle_movement(instructions,STATE,OPTION, rev, fwd, control_pins,control_pi
     value = instructions[1]
     if (PRINT == True):
         print("Type:", type, "Value:", value)
-    if (OPTION == 2 and type == 'option' and value == '1'):
-        OPTION = 1
+    if (OPTION == OPTION2 and type == 'option' and value == '1'):
+        OPTION = OPTION1
         print("Switched to 2!")
-    elif (OPTION == 1 and type == 'option' and value == '2'):
-        OPTION = 2
+    elif (OPTION == OPTION1 and type == 'option' and value == '2'):
+        OPTION = OPTION2
         print("Switched to 1!")
-    if (OPTION == 1):
+    if (OPTION == OPTION1):
         rev = p
         fwd = p2
-    elif (OPTION == 2):
+    elif (OPTION == OPTION2):
         rev = p2
         fwd = p
     if (type == "speed" and float(value) == -1): #reverse
