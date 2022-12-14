@@ -34,8 +34,8 @@ steps = 0
 STATE = STOPPED
 OPTION = 1
 
-rev = p
-fwd = p2
+rev = p2
+fwd = p
 
 halfstep_seq = [
   [1,0,0,0],
